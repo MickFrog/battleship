@@ -3,6 +3,8 @@ import Ship from "./ship";
 class Gameboard {
     gameBoard = new Map(); //maps board positions to whether [ship, isClicked?]
 
+    boardShips = [];
+
     constructor() {
         this.#drawBoard();
     }
