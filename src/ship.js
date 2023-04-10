@@ -1,4 +1,4 @@
-class Ship {
+export default class Ship {
     length;
     hits = 0;
     shipSunk = false;
@@ -8,13 +8,14 @@ class Ship {
     }
 
     hit() {
-        if (this.shipSunk == true) return;
+        if (this.shipSunk == true) return 0;
 
         this.hits++;
 
         if (this.isSunk()) {
             this.shipSunk = true;
         }
+        return 1;
     }
 
     isSunk() {
