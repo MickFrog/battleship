@@ -1,6 +1,6 @@
 import Ship from '../ship'
 
-let Cruiser = new Ship(3);
+let Cruiser = new Ship('Cruiser', 3);
 
 test('Ship takes a hit', () => {
     expect(Cruiser.hit())
