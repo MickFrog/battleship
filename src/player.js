@@ -5,10 +5,13 @@ export default class Player {
     playerBoard = new Gameboard;
     possibleMoves = []; //all the possible moves left
 
-    constructor() {
-        //generate possible moves
-        this.#generateMoves();
+    constructor(type='AI') {
+        if (type == 'Human') return; //prevent generating moves for human player
+        
+        this.#generateMoves(); //generate possible moves
     }
+
+    
 
     #generateMoves() {
         for(let i = 65; i < 75; i++){ // A to J
@@ -42,9 +45,11 @@ export default class Player {
         return this.possibleMoves.pop();
     }
 
-    castShot(oppBoard) {
-        const myShot = this.#chooseShot();
+    castShot(oppBoard, playerShot='') { 
+        if (!playerShot) { //for AI player
+            playerShot = this.#chooseShot();
+        }
 
-        oppBoard.receiveAttack(myShot);
+        return oppBoard.receiveAttack(playerShot);
     }
 }
