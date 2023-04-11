@@ -1,6 +1,6 @@
 import Ship from "./ship";
 
-class Gameboard {
+export default class Gameboard {
     gameBoard = new Map(); //maps board positions to whether [ship, isClicked?]
 
     boardShips = [];
@@ -32,14 +32,22 @@ class Gameboard {
     receiveAttack(pos) {
         let [currShip, isHit] = this.gameBoard.get(pos);
         
-        if(isHit === true) return 0; //prevent hitting twice
+        if(isHit === true) return 'Invalid'; //prevent hitting twice
 
-        if(currShip !== null) { //record hit on ship hit
+        let msg = 'Miss';
+        if(currShip !== null) { //record hit on ship
             currShip.hit();
+            msg = currShip.name + ' has been hit';
+
+            if (currShip.isSunk()) { //remove sunk ships from board ships
+                this.boardShips = this.boardShips.filter(bShip => bShip !== currShip);
+                msg = currShip.name + ' has been sunk';
+            }
         }
 
         isHit = true;
         this.gameBoard.set(pos, [currShip, isHit]); //update position  
-        return 1;      
+        return msg;      
     } 
+
 }
