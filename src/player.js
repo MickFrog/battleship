@@ -13,6 +13,7 @@ export class AI_Player extends Player {
     possibleMoves = []; //all the possible moves left
 
     constructor() {
+        super();
         this.#generateMoves(); //generate possible moves
         this.#placeRandomShips();
     }
