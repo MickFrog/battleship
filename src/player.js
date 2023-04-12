@@ -1,14 +1,42 @@
 import Gameboard from "./gameboard";
 
-export default class Player {
-
+export class Player {
     playerBoard = new Gameboard;
+
+    castShot(oppBoard, playerShot) { 
+
+        return oppBoard.receiveAttack(playerShot);
+    }
+}
+
+export class AI_Player extends Player {
     possibleMoves = []; //all the possible moves left
 
-    constructor(type='AI') {
-        if (type == 'Human') return; //prevent generating moves for human player
-        
+    constructor() {
         this.#generateMoves(); //generate possible moves
+        this.#placeRandomShips();
+    }
+
+    castShot(oppBoard) {
+        const playerShot = this.#chooseShot();
+
+        return super.castShot(oppBoard, playerShot);
+    }
+
+    #placeRandomShips() {
+        //get placements for the 5 ships
+        const carrierPos = this.#randomizeShip(5);
+        const battleshipPos = this.#randomizeShip(4);
+        const cruiserPos = this.#randomizeShip(3);
+        const submarinePos = this.#randomizeShip(3);
+        const gunnerPos = this.#randomizeShip(2);
+
+        //create ships for player
+        this.playerBoard.placeShip('Carrier', 5, carrierPos);
+        this.playerBoard.placeShip('Battleship', 4, battleshipPos);
+        this.playerBoard.placeShip('Cruiser', 3, cruiserPos);
+        this.playerBoard.placeShip('Submarine', 3, submarinePos);
+        this.playerBoard.placeShip('Gunner', 2, gunnerPos);
     }
 
     #randomizeShip(shipLength) { // This is for placing ships on the AI board.
@@ -16,7 +44,7 @@ export default class Player {
         const currAxis = axes[Math.floor(Math.random() * axes.length)];
 
         let newPlace = [];
-        if (currAxis == 'x') {
+        if (currAxis == 'x') { //get a valid ship placement on x axis
             let isValid = false;
             while (!isValid) {
                 newPlace = this.#randomHorizontal(shipLength);
@@ -27,7 +55,7 @@ export default class Player {
             }
         }
 
-        if (currAxis == 'y') {
+        if (currAxis == 'y') { // get a random ship placement on y axis
             let isValid = false;
             while (!isValid) {
                 newPlace = this.#randomVertical(shipLength);
@@ -116,13 +144,5 @@ export default class Player {
 
         //pop move
         return this.possibleMoves.pop();
-    }
-
-    castShot(oppBoard, playerShot='') { 
-        if (!playerShot) { //for AI player
-            playerShot = this.#chooseShot();
-        }
-
-        return oppBoard.receiveAttack(playerShot);
     }
 }
