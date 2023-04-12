@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lustria&display=swap');
+
+:root {
+    --headingSize: 5rem;
+    --textSize: 1.4rem;
+    --textFont: 'Lustria', serif;
+}
+
+body {
+    margin: 0px;
+
+    background-image: url(../assets/Wave.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    color: black;
+}
+
+header {
+    padding: var(--textSize) 0px;
+    font-family: 'Libre Barcode 39 Text', cursive;
+    font-size: var(--headingSize);
+    color: #F0D3F7;
+
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    padding: 0.5rem;
+    font-family: var(--textFont);
+    font-size: var(--textSize);
+    margin-top: auto;
+
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column wrap;
+}
