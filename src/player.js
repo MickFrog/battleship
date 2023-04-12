@@ -25,18 +25,20 @@ export class AI_Player extends Player {
     }
 
     #placeRandomShips() {
-        //get placements for the 5 ships
+        //get placements and place the 5 ships
         const carrierPos = this.#randomizeShip(5);
-        const battleshipPos = this.#randomizeShip(4);
-        const cruiserPos = this.#randomizeShip(3);
-        const submarinePos = this.#randomizeShip(3);
-        const gunnerPos = this.#randomizeShip(2);
-
-        //create ships for player
         this.playerBoard.placeShip('Carrier', 5, carrierPos);
+
+        const battleshipPos = this.#randomizeShip(4);
         this.playerBoard.placeShip('Battleship', 4, battleshipPos);
+
+        const cruiserPos = this.#randomizeShip(3);
         this.playerBoard.placeShip('Cruiser', 3, cruiserPos);
+
+        const submarinePos = this.#randomizeShip(3);
         this.playerBoard.placeShip('Submarine', 3, submarinePos);
+
+        const gunnerPos = this.#randomizeShip(2);
         this.playerBoard.placeShip('Gunner', 2, gunnerPos);
     }
 

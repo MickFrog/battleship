@@ -7,6 +7,10 @@ let comp = new AI_Player();
 human.playerBoard.placeShip('Carrier', 5, ['B1', 'C1', 'D1', 'E1', 'F1']);
 
 describe('Players versing each other', () => {
+    test('Created AI gameboard', () => {
+        console.log(comp.playerBoard.gameBoard);
+    });
+
     test('Human making shot at AI board', () => {
         console.log(human.castShot(comp.playerBoard, 'E4'))
     });
