@@ -74,5 +74,11 @@ footer {
     margin-bottom: 3rem;
     background-color: var(--boardBg);
     width: 500px;
-    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.box:hover {
+    background-color: var(--pink);
 }
