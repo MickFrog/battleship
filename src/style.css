@@ -5,6 +5,8 @@
     --headingSize: 5rem;
     --textSize: 1.4rem;
     --textFont: 'Lustria', serif;
+    --pink: #F0D3F7;
+    --boardBg: #826C7F;
 }
 
 body {
@@ -23,7 +25,8 @@ header {
     padding: var(--textSize) 0px;
     font-family: 'Libre Barcode 39 Text', cursive;
     font-size: var(--headingSize);
-    color: #F0D3F7;
+    letter-spacing: 5px;
+    color: var(--pink);
 
     display: flex;
     justify-content: center;
@@ -31,6 +34,9 @@ header {
 
 main {
     flex: 1 0 auto;
+    font-family: var(--textFont);
+    font-size: var(--textSize);
+    color: var(--pink);
 }
 
 footer {
@@ -47,4 +53,26 @@ footer {
     min-height: 100vh;
     display: flex;
     flex-flow: column wrap;
+}
+
+.boardsContainer {
+    margin-top: var(--textFont);
+    display: flex;
+    flex-flow: row wrap;
+
+    justify-content: center;
+}
+
+.playerHead {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.gameBoard {
+    margin: 0 3rem;
+    margin-bottom: 3rem;
+    background-color: var(--boardBg);
+    width: 500px;
+    height: 500px;
 }
