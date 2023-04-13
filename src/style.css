@@ -3,6 +3,7 @@
 
 :root {
     --headingSize: 5rem;
+    --defaultPad: 3rem;
     --textSize: 1.4rem;
     --textFont: 'Lustria', serif;
     --pink: #F0D3F7;
@@ -49,6 +50,53 @@ footer {
     justify-content: center;
 }
 
+.overlay {
+    position: absolute;
+     display: none; /* flex */
+    justify-content: center;
+
+    height: 100vh;
+    width: 100%;
+
+    background-color: rgba(120, 120, 120, 0.4);
+}
+
+.startDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 5%;
+    width: 700px;
+    height: max-content;
+    font-size: var(--textSize);
+
+    background-color: black;
+    color: var(--pink);
+    border-radius: 5px;
+}
+
+.instr {
+    margin: 2rem 0px;
+    font-size: 2rem;
+}
+
+#axisBtn {
+    width: 200px;
+    padding: 5px;
+    font-family: inherit;
+    font-size: var(--textSize);
+
+    background-color: var(--pink);
+    color: black;
+    margin-bottom: 2rem;
+    border: none;
+}
+
+#axisBtn:hover {
+    background-color: var(--boardBg);
+}
+
 .container{
     min-height: 100vh;
     display: flex;
@@ -70,8 +118,8 @@ footer {
 }
 
 .gameBoard {
-    margin: 0 3rem;
-    margin-bottom: 3rem;
+    margin: 0 var(--defaultPad);
+    margin-bottom: var(--defaultPad);
     background-color: var(--boardBg);
     width: 500px;
 
@@ -79,6 +127,13 @@ footer {
     flex-direction: column;
 }
 
-.box:hover {
+.box {
+    margin: 0;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+}
+
+.hoverBox:hover {
     background-color: var(--pink);
 }

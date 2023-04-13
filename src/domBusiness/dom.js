@@ -1,14 +1,15 @@
 const DOM_Elements = {
     humanBoard: document.getElementById('humanBoard'),
     compBoard: document.getElementById('compBoard'),
+    placingBoard: document.getElementById('placingBoard'),
 }
 
-function drawPositions(boardElem) {
+function drawPositions(boardElem, bhover=false) {
     for (let i = 65; i < 75; i++) {
         let boardRow = createRow();
 
         for (let j = 0; j < 10; j++) {
-            let newBox = createBox();
+            let newBox = createBox(bhover);
             newBox.setAttribute('boxID', `${String.fromCharCode(i)}${j}`);
             boardRow.appendChild(newBox);
         }
@@ -26,14 +27,13 @@ function createRow() {
     return newRow;
 }
 
-function createBox() {
+function createBox(bhover=false) {
     let newBox = document.createElement('div');
 
-    newBox.style.margin = '0';
-    newBox.style.border = '1px solid black';
-    newBox.style.width = '50px';
-    newBox.style.height = '50px';
     newBox.className = 'box';
+
+    //to cater for hover on only compBoard boxes
+    if (bhover) newBox.classList.add('hoverBox'); 
 
     return newBox;
 }
@@ -44,5 +44,6 @@ function addBoxEvents(boxElem) {
 
 export default function initializeBoards() {
     drawPositions(DOM_Elements.humanBoard);
-    drawPositions(DOM_Elements.compBoard);
+    drawPositions(DOM_Elements.compBoard, true);
+    drawPositions(DOM_Elements.placingBoard, true);
 }
