@@ -6,6 +6,7 @@
     --defaultPad: 3rem;
     --textSize: 1.4rem;
     --textFont: 'Lustria', serif;
+    --shipColor: #235789;
     --pink: #F0D3F7;
     --boardBg: #826C7F;
 }
@@ -136,4 +137,8 @@ footer {
 
 .hoverBox:hover {
     background-color: var(--pink);
+}
+
+.shipHover {
+    background-color: var(--shipColor);
 }
