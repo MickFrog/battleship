@@ -2,12 +2,22 @@ const DOM_Elements = {
     humanBoard: document.getElementById('humanBoard'),
     compBoard: document.getElementById('compBoard'),
     placingBoard: document.getElementById('placingBoard'),
+    axisBtn: document.getElementById('axisBtn'),
 }
 
 const placingUtil = {
     shipLengths: [5, 4, 3, 3, 2],
     currShipLen: 0,
+    currAxis: 'x',
 }
+
+//Event handlers
+DOM_Elements.axisBtn.addEventListener('click', () => {
+    placingUtil.currAxis == 'x' 
+    ? placingUtil.currAxis = 'y' 
+    : placingUtil.currAxis = 'x';
+
+});
 
 function drawPositions(boardElem, bhover=false) {
     for (let i = 65; i < 75; i++) {
@@ -42,7 +52,7 @@ function createBox(bhover=false) {
 function placingBoardEvents(boxElem) {
     //Hover effects 
     boxElem.addEventListener('mouseenter', () => {
-        let locations = generateLocations(boxElem.id); //generate locations from currBox to last box of ship
+        let locations = generateLocations(boxElem.id, placingUtil.currAxis); //generate locations from currBox to last box of ship
         
         if (isValidPlacing(locations)) {
             setHovered(locations, true);
@@ -50,19 +60,31 @@ function placingBoardEvents(boxElem) {
     });
 
     boxElem.addEventListener('mouseleave', () => {
-        const locations = generateLocations(boxElem.id);
+        const locations = generateLocations(boxElem.id, placingUtil.currAxis);
         setHovered(locations);
     });
 }
 
-function generateLocations(elemID) {
+function generateLocations(elemID, axis) {
     let locations = [];
     let shipLength = placingUtil.shipLengths[placingUtil.currShipLen];
-        
-    if (9 - parseInt(elemID[1]) + 1 >= shipLength) { //if ship can fit horizontally
-        //generate locations
-        for (let i = 0; i < shipLength; i++) {
-            locations.push(`${elemID[0]}${parseInt(elemID[1]) + i}`);
+
+    if (axis == 'x') {
+        if (9 - parseInt(elemID[1]) + 1 >= shipLength) { //if ship can fit horizontally
+            //generate locations
+            for (let i = 0; i < shipLength; i++) {
+                locations.push(`${elemID[0]}${parseInt(elemID[1]) + i}`);
+            }
+        }
+    }    
+    
+    if (axis == 'y') {
+        if((74 - elemID.charCodeAt(0)) + 1 >= shipLength) {
+            let tempCharCode = elemID.charCodeAt(0);
+            //generate locations
+            for (let i = 0; i < shipLength; i++) {
+                locations.push(`${String.fromCharCode(tempCharCode + i)}${parseInt(elemID[1])}`);
+            }
         }
     }
     return locations;
