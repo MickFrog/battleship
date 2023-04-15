@@ -6,25 +6,13 @@ const DOM_Elements = {
 
 function drawPositions(boardElem, bhover=false) {
     for (let i = 65; i < 75; i++) {
-        let boardRow = createRow();
 
         for (let j = 0; j < 10; j++) {
             let newBox = createBox(bhover);
-            newBox.setAttribute('boxID', `${String.fromCharCode(i)}${j}`);
-            boardRow.appendChild(newBox);
+            newBox.id = `${String.fromCharCode(i)}${j}`;
+            boardElem.appendChild(newBox);
         }
-
-        boardElem.appendChild(boardRow);
     }
-}
-
-function createRow() {
-    let newRow = document.createElement('div');
-
-    newRow.style.display = 'flex';
-    newRow.style.margin = '0';
-
-    return newRow;
 }
 
 function createBox(bhover=false) {

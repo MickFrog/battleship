@@ -52,7 +52,7 @@ footer {
 
 .overlay {
     position: absolute;
-     display: none; /* flex */
+    display: flex; /* flex */
     justify-content: center;
 
     height: 100vh;
@@ -123,8 +123,8 @@ footer {
     background-color: var(--boardBg);
     width: 500px;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template: repeat(10, 50px) / repeat(10, 50px);
 }
 
 .box {
