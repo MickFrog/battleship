@@ -6,7 +6,8 @@
     --defaultPad: 3rem;
     --textSize: 1.4rem;
     --textFont: 'Lustria', serif;
-    --shipColor: #44344F;
+    --shipHoverColor: #44344F;
+    --shipColor: #2176FF;
     --pink: #F0D3F7;
     --boardBg: #826C7F;
 }
@@ -140,5 +141,9 @@ footer {
 }
 
 .shipHover {
+    background-color: var(--shipHoverColor);
+}
+
+.shipBox {
     background-color: var(--shipColor);
 }
