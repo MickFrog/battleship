@@ -1,7 +1,4 @@
-const placingElements = {
-    placingBoard: document.getElementById('placingBoard'),
-    axisBtn: document.getElementById('axisBtn'),
-}
+import { DOM_Elements, drawPositions } from "./domUtil";
 
 const placingUtil = {
     shipLengths: [5, 4, 3, 3, 2],
@@ -10,7 +7,7 @@ const placingUtil = {
 }
 
 //Event handlers
-placingElements.axisBtn.addEventListener('click', () => {
+DOM_Elements.axisBtn.addEventListener('click', () => {
     placingUtil.currAxis == 'x' 
     ? placingUtil.currAxis = 'y' 
     : placingUtil.currAxis = 'x';
@@ -19,7 +16,7 @@ placingElements.axisBtn.addEventListener('click', () => {
 
 //Functions
 function addPlacingEvents() { //add hover events to all placingBoard boxes
-    let placingBoxes = [...placingElements.placingBoard.childNodes]; 
+    let placingBoxes = [...DOM_Elements.placingBoard.childNodes]; 
 
     for (let i = 0; i < placingBoxes.length; i++) {
         placingBoardEvents(placingBoxes[i]);
@@ -70,7 +67,7 @@ function generateLocations(elemID, axis) {
 function setHovered(posArray, bSwitch=false) {
     if (posArray.length < 1) return;
 
-    const placingBoardChildren = [...placingElements.placingBoard.children];
+    const placingBoardChildren = [...DOM_Elements.placingBoard.children];
     if (bSwitch) {
         for (let i = 0; i < posArray.length; i++) {
             const currBox = placingBoardChildren.find(element => element.id == posArray[i]);
@@ -89,4 +86,7 @@ function isValidPlacing(posArray) {
     return true;
 }
 
-export {placingElements, addPlacingEvents};
+export default function initializePlacingBoards() {
+    drawPositions(DOM_Elements.placingBoard);
+    addPlacingEvents();
+}
