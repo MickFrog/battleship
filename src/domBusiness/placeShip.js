@@ -1,4 +1,5 @@
 import { DOM_Elements, drawPositions } from "./domUtil";
+import { players } from "../gameHandler";
 
 const placingUtil = {
     shipLengths: [5, 4, 3, 3, 2],
@@ -24,9 +25,10 @@ function addPlacingEvents() { //add hover events to all placingBoard boxes
 }
 
 function placingBoardEvents(boxElem) {
+    let locations = [];
     //Hover effects 
     boxElem.addEventListener('mouseenter', () => {
-        let locations = generateLocations(boxElem.id, placingUtil.currAxis); //generate locations from currBox to last box of ship
+        locations = generateLocations(boxElem.id, placingUtil.currAxis); //generate locations from currBox to last box of ship
         
         if (isValidPlacing(locations)) {
             setHovered(locations, true);
@@ -34,7 +36,6 @@ function placingBoardEvents(boxElem) {
     });
 
     boxElem.addEventListener('mouseleave', () => {
-        const locations = generateLocations(boxElem.id, placingUtil.currAxis);
         setHovered(locations);
     });
 }
@@ -83,7 +84,7 @@ function setHovered(posArray, bSwitch=false) {
 }
 
 function isValidPlacing(posArray) {
-    return true;
+    return players.activePlayer.checkValidity(posArray);
 }
 
 export default function initializePlacingBoards() {

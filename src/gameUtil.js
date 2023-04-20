@@ -1,3 +1,3 @@
 export default gameUtility = {
-    activePlayer: null,
+    //write a switchPlayer function
 }
