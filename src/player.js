@@ -7,6 +7,15 @@ export class Player {
 
         return oppBoard.receiveAttack(playerShot);
     }
+
+    checkValidity(posArray) { //check if all positions provided are valid
+        for(let pos of posArray) {
+            if (this.playerBoard.gameBoard.get(pos)[0] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 export class AI_Player extends Player {
@@ -52,7 +61,7 @@ export class AI_Player extends Player {
             while (!isValid) {
                 newPlace = this.#randomHorizontal(shipLength);
 
-                if (this.#checkValidity(newPlace)) {
+                if (this.checkValidity(newPlace)) {
                     isValid = true;
                 }  
             }
@@ -63,7 +72,7 @@ export class AI_Player extends Player {
             while (!isValid) {
                 newPlace = this.#randomVertical(shipLength);
 
-                if (this.#checkValidity(newPlace)) {
+                if (this.checkValidity(newPlace)) {
                     isValid = true;
                 }
             }
@@ -116,15 +125,6 @@ export class AI_Player extends Player {
                 this.possibleMoves.push(`${letter}${j}`);
             }
         }
-    }
-
-    #checkValidity(posArray) { //check if all positions provided are valid
-        for(let pos of posArray) {
-            if (this.playerBoard.gameBoard.get(pos)[0] != null) {
-                return false;
-            }
-        }
-        return true;
     }
 
     #shuffleArray(myArr) {

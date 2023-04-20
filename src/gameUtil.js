@@ -1,3 +1,3 @@
-export default gameUtils = {
+export default gameUtility = {
     activePlayer: null,
 }
