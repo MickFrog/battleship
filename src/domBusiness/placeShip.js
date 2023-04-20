@@ -65,6 +65,13 @@ function placingBoardEvents(boxElem) {
 
             setClicked(locations); //visually place ships
         }
+
+        if (placingUtil.currShip > 4) { //when the last ship is placed
+            DOM_Elements.humanBoard.replaceChildren(...DOM_Elements.placingBoard.children);
+
+            DOM_Elements.overlay.style.display = 'none';
+            DOM_Elements.startDiv.style.display = 'none';
+        }
     })
 }
 

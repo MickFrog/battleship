@@ -125,6 +125,9 @@ footer {
     background-color: var(--boardBg);
     width: 500px;
 
+    border-radius: 5px;
+    border: 5px solid var(--shipHoverColor);
+
     display: grid;
     grid-template: repeat(10, 50px) / repeat(10, 50px);
 }

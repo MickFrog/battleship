@@ -4,6 +4,8 @@ const DOM_Elements = {
     placingBoard: document.getElementById('placingBoard'),
     axisBtn: document.getElementById('axisBtn'),
     shipToPlace: document.getElementById('shipToPlace'),
+    overlay: document.querySelector('.overlay'),
+    startDiv: document.querySelector('.startDiv'),
 }
 
 function drawPositions(boardElem, bhover=false) {
