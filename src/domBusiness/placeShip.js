@@ -59,9 +59,11 @@ function placingBoardEvents(boxElem) {
 
             //increment currShip
             placingUtil.currShip++;
+            if (placingUtil.shipsToPlace[placingUtil.currShip]) { //Prevent breaking when last ship is reached
+                DOM_Elements.shipToPlace.textContent = placingUtil.shipsToPlace[placingUtil.currShip].name;
+            }
 
-            //visually place ships
-            setClicked(locations);
+            setClicked(locations); //visually place ships
         }
     })
 }

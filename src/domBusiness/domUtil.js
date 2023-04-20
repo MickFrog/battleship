@@ -3,6 +3,7 @@ const DOM_Elements = {
     compBoard: document.getElementById('compBoard'),
     placingBoard: document.getElementById('placingBoard'),
     axisBtn: document.getElementById('axisBtn'),
+    shipToPlace: document.getElementById('shipToPlace'),
 }
 
 function drawPositions(boardElem, bhover=false) {
