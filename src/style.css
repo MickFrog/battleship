@@ -122,11 +122,9 @@ footer {
 .gameBoard {
     margin: 0 var(--defaultPad);
     margin-bottom: var(--defaultPad);
-    background-color: var(--boardBg);
     width: 500px;
 
     border-radius: 5px;
-    border: 5px solid var(--shipHoverColor);
 
     display: grid;
     grid-template: repeat(10, 50px) / repeat(10, 50px);
@@ -134,7 +132,8 @@ footer {
 
 .box {
     margin: 0;
-    border: 1px solid black;
+    border: 2px solid black;
+    background-color: var(--boardBg);
     width: 50px;
     height: 50px;
 }

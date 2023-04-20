@@ -52,18 +52,7 @@ function placingBoardEvents(boxElem) {
         if (placingUtil.currShip > 4) return; //prevent choosing non-existent ships
 
         if (isValidPlacing(locations)) {
-            //logically place ships
-            players.activePlayer.playerBoard.placeShip(placingUtil.shipsToPlace[placingUtil.currShip].name, 
-            placingUtil.shipsToPlace[placingUtil.currShip].len, 
-            locations);
-
-            //increment currShip
-            placingUtil.currShip++;
-            if (placingUtil.shipsToPlace[placingUtil.currShip]) { //Prevent breaking when last ship is reached
-                DOM_Elements.shipToPlace.textContent = placingUtil.shipsToPlace[placingUtil.currShip].name;
-            }
-
-            setClicked(locations); //visually place ships
+            addShipToBoard(locations);
         }
 
         if (placingUtil.currShip > 4) { //when the last ship is placed
@@ -73,6 +62,21 @@ function placingBoardEvents(boxElem) {
             DOM_Elements.startDiv.style.display = 'none';
         }
     })
+}
+
+function addShipToBoard(locations) {
+    //logically place ships
+    players.activePlayer.playerBoard.placeShip(placingUtil.shipsToPlace[placingUtil.currShip].name, 
+    placingUtil.shipsToPlace[placingUtil.currShip].len, 
+    locations);
+
+    //increment currShip
+    placingUtil.currShip++;
+    if (placingUtil.shipsToPlace[placingUtil.currShip]) { //Prevent breaking when last ship is reached
+        DOM_Elements.shipToPlace.textContent = placingUtil.shipsToPlace[placingUtil.currShip].name;
+    }
+
+    setClicked(locations); //visually place ships
 }
 
 function generateLocations(elemID, axis) {
