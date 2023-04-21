@@ -3,13 +3,19 @@ import { Player, AI_Player } from "./player";
 import initializeBoards from './domBusiness/dom';
 
 export const players = {
-    humanPlayer: new Player(),
-    compPlayer: new AI_Player(),
+    humanPlayer: null,
+    compPlayer: null,
     activePlayer: null,
 }
 
-export function initializeGame() {
-    initializeBoards();
-    //Initialize players
+function initializePlayers() {
+    players.humanPlayer = new Player();
+    players.compPlayer = new AI_Player();
+
     players.activePlayer = players.humanPlayer;
+}
+
+export function initializeGame() {
+    initializePlayers();
+    initializeBoards();
 }
