@@ -30,4 +30,12 @@ function createBox(bhover=false) {
     return newBox;
 }
 
-export {DOM_Elements, drawPositions};
+function addBoardEvents(myBoard, callback) {
+    let boxes = [...myBoard.childNodes]; 
+
+    for (let i = 0; i < boxes.length; i++) {
+        callback(boxes[i]);
+    }
+}
+
+export {DOM_Elements, drawPositions, addBoardEvents};

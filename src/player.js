@@ -3,9 +3,9 @@ import Gameboard from "./gameboard";
 export class Player {
     playerBoard = new Gameboard;
 
-    castShot(oppBoard, playerShot) { 
+    castShot(opponent, playerShot) { 
 
-        return oppBoard.receiveAttack(playerShot);
+        return opponent.playerBoard.receiveAttack(playerShot);
     }
 
     checkValidity(posArray) { //check if all positions provided are valid
@@ -27,10 +27,10 @@ export class AI_Player extends Player {
         this.#placeRandomShips();
     }
 
-    castShot(oppBoard) {
+    castShot(opponent) {
         const playerShot = this.#chooseShot();
 
-        return super.castShot(oppBoard, playerShot);
+        return super.castShot(opponent, playerShot);
     }
 
     #placeRandomShips() {

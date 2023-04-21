@@ -1,4 +1,4 @@
-import { DOM_Elements, drawPositions } from "./domUtil";
+import { DOM_Elements, drawPositions, addBoardEvents } from "./domUtil";
 import { players } from "../gameHandler";
 
 const placingUtil = {
@@ -19,15 +19,6 @@ DOM_Elements.axisBtn.addEventListener('click', () => {
     : placingUtil.currAxis = 'x';
 
 });
-
-//Functions
-function addPlacingEvents() { //add hover events to all placingBoard boxes
-    let placingBoxes = [...DOM_Elements.placingBoard.childNodes]; 
-
-    for (let i = 0; i < placingBoxes.length; i++) {
-        placingBoardEvents(placingBoxes[i]);
-    }
-}
 
 function placingBoardEvents(boxElem) {
     let locations = [];
@@ -56,6 +47,7 @@ function placingBoardEvents(boxElem) {
         }
 
         if (placingUtil.currShip > 4) { //when the last ship is placed
+            //set placing Board elements to humanBoard elements
             DOM_Elements.humanBoard.replaceChildren(...DOM_Elements.placingBoard.children);
 
             DOM_Elements.overlay.style.display = 'none';
@@ -138,5 +130,5 @@ function isValidPlacing(posArray) {
 
 export default function initializePlacingBoards() {
     drawPositions(DOM_Elements.placingBoard);
-    addPlacingEvents();
+    addBoardEvents(DOM_Elements.placingBoard, placingBoardEvents);
 }

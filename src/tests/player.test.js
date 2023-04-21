@@ -12,10 +12,10 @@ describe('Players versing each other', () => {
     });
 
     test('Human making shot at AI board', () => {
-        console.log(human.castShot(comp.playerBoard, 'E4'))
+        console.log(human.castShot(comp, 'E4'))
     });
 
     test('AI making shot at human board', () => {
-        console.log(comp.castShot(human.playerBoard));
+        console.log(comp.castShot(human));
     });
 });
