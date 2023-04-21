@@ -1,5 +1,4 @@
 import { Player, AI_Player } from "./player";
-// import gameUtility from "./gameUtil";
 import initializeBoards from './domBusiness/dom';
 
 export const players = {

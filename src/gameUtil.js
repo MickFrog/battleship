@@ -1,3 +1,21 @@
+import { players } from "./gameHandler"
+
 export default gameUtility = {
-    //write a switchPlayer function
+    switchPlayer: () => {
+        players.activePlayer == players.humanPlayer 
+        ? players.activePlayer = players.compPlayer
+        : players.activePlayer = players.humanPlayer
+    },
+
+    gameWon: () => { //return winner of game
+        if (players.humanPlayer.playerBoard.boardShips.length == 0) {
+            return players.compPlayer;
+        }
+
+        if (players.compPlayer.playerBoard.boardShips.length == 0) {
+            return players.humanPlayer;
+        }
+        
+        return null;
+    },
 }
