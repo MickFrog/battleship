@@ -21,6 +21,10 @@ function compBoardEvents(boxElem) {
         }
         handleAIShot();
         
+        let winner = gameUtil.gameWon();
+        if (winner != null) {
+            console.log(winner);
+        }
     }); 
 }
 
@@ -47,5 +51,15 @@ function handleAIShot() {
         handleShot(shotResult, boxShot);
     
         gameUtil.switchPlayer();
+    }
+}
+
+function evaluateWin(myWinner) {
+    if (myWinner == players.humanPlayer) {
+        //display human win message
+    }
+
+    if (myWinner == players.compPlayer) {
+        //display computer win message
     }
 }
