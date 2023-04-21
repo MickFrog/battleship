@@ -65,7 +65,7 @@ footer {
     background-color: rgba(120, 120, 120, 0.4);
 }
 
-.startDiv {
+.startDiv, .winDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,12 +80,16 @@ footer {
     border-radius: 5px;
 }
 
-.instr {
+.winDiv {
+    display: none;
+}
+
+.instr, .winMsg {
     margin: 2rem 0px;
     font-size: 2rem;
 }
 
-#axisBtn {
+#axisBtn, #restartBtn {
     width: 200px;
     padding: 5px;
     font-family: inherit;
@@ -97,7 +101,7 @@ footer {
     border: none;
 }
 
-#axisBtn:hover {
+#axisBtn:hover, #restartBtn:hover {
     background-color: var(--boardBg);
 }
 

@@ -6,6 +6,9 @@ const DOM_Elements = {
     shipToPlace: document.getElementById('shipToPlace'),
     overlay: document.querySelector('.overlay'),
     startDiv: document.querySelector('.startDiv'),
+    winDiv: document.querySelector('.winDiv'),
+    winMsg: document.querySelector('.winMsg'),
+    restartBtn: document.getElementById('restartBtn'),
 }
 
 function drawPositions(boardElem, bhover=false) {

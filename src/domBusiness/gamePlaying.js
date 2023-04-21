@@ -9,6 +9,12 @@ export default function initializePlayingBoards() {
     addBoardEvents(DOM_Elements.compBoard, compBoardEvents);
 }
 
+//eventHandlers
+DOM_Elements.restartBtn.addEventListener('click', () => {
+    //reload page to restart game
+    location.reload();
+});
+
 function compBoardEvents(boxElem) {
     boxElem.addEventListener('click', () => {
         if (players.activePlayer == players.humanPlayer) { //if human is active player
@@ -23,7 +29,7 @@ function compBoardEvents(boxElem) {
         
         let winner = gameUtil.gameWon();
         if (winner != null) {
-            console.log(winner);
+            evaluateWin(winner);
         }
     }); 
 }
@@ -55,11 +61,16 @@ function handleAIShot() {
 }
 
 function evaluateWin(myWinner) {
+    DOM_Elements.overlay.style.display = 'flex';
+    DOM_Elements.winDiv.style.display = 'flex';
+    
     if (myWinner == players.humanPlayer) {
-        //display human win message
+        //display human win msg
+        DOM_Elements.winMsg.textContent = 'You Won! Congratulations';
     }
 
     if (myWinner == players.compPlayer) {
         //display computer win message
+        DOM_Elements.winMsg.textContent = 'You Lost!';
     }
 }
