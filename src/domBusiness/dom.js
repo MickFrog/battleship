@@ -4,5 +4,4 @@ import initializePlacingBoards from "./placeShip";
 export default function initializeBoards() {
     initializePlayingBoards();
     initializePlacingBoards();
-
 }

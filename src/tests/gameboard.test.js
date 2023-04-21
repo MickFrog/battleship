@@ -11,78 +11,59 @@ myGameB.placeShip('Gunner', 2, ['C9', 'D9']);
 describe('Hitting tests', () => {
     test('Hit on Carrier', () => {
         expect(myGameB.receiveAttack('B1'))
-        .toBe('Carrier has been hit');
+        .toBe(1);
     });
 
     test('Hit on Battleship', () => {
         expect(myGameB.receiveAttack('G2'))
-        .toBe('Battleship has been hit');
+        .toBe(1);
     });
 
     test('Hit on Cruiser', () => {
         expect(myGameB.receiveAttack('I3'))
-        .toBe('Cruiser has been hit');
+        .toBe(1);
     });
 
     test('Hit on Submarine', () => {
         expect(myGameB.receiveAttack('C5'))
-        .toBe('Submarine has been hit');
+        .toBe(1);
     });
 
     test('Hit on Gunner', () => {
         expect(myGameB.receiveAttack('C9'))
-        .toBe('Gunner has been hit');
+        .toBe(1);
     });
 
     test('Missed shot', () => {
         expect(myGameB.receiveAttack('C3'))
-        .toBe('Miss');
+        .toBe(0);
     });
 
     test('Shot on invalid spot', () => {
         expect(myGameB.receiveAttack('C3'))
-        .toBe('Invalid');
+        .toBe(-1);
     });
 });
 
 describe('Sinking Ships', () => {    
 
-    myGameB.receiveAttack('C1'); myGameB.receiveAttack('D1'); myGameB.receiveAttack('E1'); 
-    test('Sunk Carrier', () => {
-        expect(myGameB.receiveAttack('F1'))
-        .toBe('Carrier has been sunk');
-    });
+    myGameB.receiveAttack('C1'); myGameB.receiveAttack('D1'); myGameB.receiveAttack('E1'); myGameB.receiveAttack('C6');
+    myGameB.receiveAttack('G3'); myGameB.receiveAttack('G4'); myGameB.receiveAttack('I4');
 
-    myGameB.receiveAttack('G3'); myGameB.receiveAttack('G4');
-    test('Sunk Battleship', () => {
-        expect(myGameB.receiveAttack('G5'))
-        .toBe('Battleship has been sunk');
-    });
-
-    myGameB.receiveAttack('I4');
-    test('Sunk Cruiser', () => {
-        expect(myGameB.receiveAttack('I5'))
-        .toBe('Cruiser has been sunk');
-    });
-
-    myGameB.receiveAttack('C6');
-    test('Sunk Submarine', () => {
-        expect(myGameB.receiveAttack('C7'))
-        .toBe('Submarine has been sunk');
-    });
-
-    test('Sunk Gunner', () => {
-        expect(myGameB.receiveAttack('D9'))
-        .toBe('Gunner has been sunk');
-    });
-    
     test('Invalid shot at ship', () => {
-        expect(myGameB.receiveAttack('C7'))
-        .toBe('Invalid');
+        expect(myGameB.receiveAttack('C6'))
+        .toBe(-1);
     });
 
     test('Gameboard has all ships sunk', () => {
-        expect(myGameB.boardShips.length)
+        myGameB.receiveAttack('F1');
+        myGameB.receiveAttack('G5');
+        myGameB.receiveAttack('I5');
+        myGameB.receiveAttack('C7');
+        myGameB.receiveAttack('D9');
+        expect(
+            myGameB.boardShips.length
+            )
         .toBe(0);
     });
 });

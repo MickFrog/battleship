@@ -29,19 +29,18 @@ export default class Gameboard {
         this.boardShips.push(newShip);
     } 
 
-    receiveAttack(pos) {
+    receiveAttack(pos) { //-1 - invalid; 0 - miss; 1 - hit
         let [currShip, isHit] = this.gameBoard.get(pos);
         
-        if(isHit === true) return 'Invalid'; //prevent hitting twice
+        if(isHit === true) return -1; //prevent hitting twice
 
-        let msg = 'Miss';
+        let msg = 0;
         if(currShip !== null) { //record hit on ship
             currShip.hit();
-            msg = currShip.name + ' has been hit';
+            msg = 1;
 
             if (currShip.isSunk()) { //remove sunk ships from board ships
                 this.boardShips = this.boardShips.filter(bShip => bShip !== currShip);
-                msg = currShip.name + ' has been sunk';
             }
         }
 
