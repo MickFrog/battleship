@@ -1,6 +1,6 @@
 import { players } from "./gameHandler"
 
-export default gameUtility = {
+const gameUtil = {
     switchPlayer: () => {
         players.activePlayer == players.humanPlayer 
         ? players.activePlayer = players.compPlayer
@@ -19,3 +19,5 @@ export default gameUtility = {
         return null;
     },
 }
+
+export default gameUtil;

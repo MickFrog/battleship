@@ -1,4 +1,5 @@
 import { DOM_Elements, drawPositions, addBoardEvents } from "./domUtil";
+import gameUtil from "../gameUtil";
 import { players } from "../gameHandler";
 
 export default function initializePlayingBoards() {
@@ -10,16 +11,41 @@ export default function initializePlayingBoards() {
 
 function compBoardEvents(boxElem) {
     boxElem.addEventListener('click', () => {
-        let shotMade = players.humanPlayer.castShot(players.compPlayer, boxElem.id);
-        boxElem.classList.remove('hoverBox');
+        if (players.activePlayer == players.humanPlayer) { //if human is active player
+            let shotMade = players.humanPlayer.castShot(players.compPlayer, boxElem.id);
+            boxElem.classList.remove('hoverBox');
+    
+            handleShot(shotMade, boxElem);
 
-        if (shotMade === -1) return;
-
-        if (shotMade === 0) {
-            boxElem.classList.add('missedBox');
-            return;
+            gameUtil.switchPlayer();
         }
-        //when shotMade at ship
-        boxElem.classList.add('hitBox');
+        handleAIShot();
+        
     }); 
+}
+
+function handleShot(shotResult, shotBox) {
+    if (shotResult === -1) return;
+
+    if (shotResult === 0) {
+        shotBox.classList.add('missedBox');
+        return;
+    }
+    //when shot made at ship
+    shotBox.classList.add('hitBox');
+}
+
+function handleAIShot() {
+    if (players.activePlayer == players.compPlayer) {
+        //cast AI player shot
+        let [shotMade, shotResult] = players.compPlayer.castShot(players.humanPlayer);
+    
+        //get box shot in html
+        let humanBoardChildren = [...DOM_Elements.humanBoard.children];
+        const boxShot = humanBoardChildren.find(elem => elem.id == shotMade);
+    
+        handleShot(shotResult, boxShot);
+    
+        gameUtil.switchPlayer();
+    }
 }

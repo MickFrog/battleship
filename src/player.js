@@ -30,7 +30,7 @@ export class AI_Player extends Player {
     castShot(opponent) {
         const playerShot = this.#chooseShot();
 
-        return super.castShot(opponent, playerShot);
+        return [playerShot, super.castShot(opponent, playerShot)];
     }
 
     #placeRandomShips() {
