@@ -11,6 +11,7 @@ export default function initializePlayingBoards() {
 function compBoardEvents(boxElem) {
     boxElem.addEventListener('click', () => {
         let shotMade = players.humanPlayer.castShot(players.compPlayer, boxElem.id);
+        boxElem.classList.remove('hoverBox');
 
         if (shotMade === -1) return;
 
