@@ -10,6 +10,8 @@
     --shipColor: #2176FF;
     --pink: #F0D3F7;
     --boardBg: #826C7F;
+    --missColor: #FFFFFC;
+    --hitColor: #FB3640;
 }
 
 body {
@@ -148,4 +150,12 @@ footer {
 
 .shipBox {
     background-color: var(--shipColor);
+}
+
+.missedBox {
+    background-color: var(--missColor);
+}
+
+.hitBox {
+    background-color: var(--hitColor);
 }
